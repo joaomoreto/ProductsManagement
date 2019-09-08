@@ -1,0 +1,59 @@
+<div class="uk-flex-center" uk-grid>
+  <div class="uk-width-1-2@m">
+    <div class="uk-card uk-card-default uk-card-body">
+
+      <form [formGroup]="form">
+        <div class="uk-margin">
+          <input type="text" mask="##-###" maxlength="6" class="uk-input uk-form-large uk-form-danger"
+            placeholder="Code" formControlName="code"
+            [ngClass]="{'uk-form-danger': (!form.controls.code.valid && !form.controls.code.pristine)}">
+          <span class="uk-text-danger" *ngIf="form.controls.code.invalid && !form.controls.code.pristine">
+            Invalid Code
+          </span>
+        </div>
+        <div class="uk-margin">
+          <input type="text" class="uk-input uk-form-large uk-form-danger" placeholder="Title" formControlName="title"
+            [ngClass]="{'uk-form-danger': (!form.controls.title.valid && !form.controls.title.pristine)}">
+          <span class="uk-text-danger" *ngIf="form.controls.title.invalid && !form.controls.title.pristine">
+            Invalid Title
+          </span>
+        </div>
+        <div class="uk-margin">
+          <input type="number" class="uk-input uk-form-large uk-form-danger" placeholder="Price" formControlName="price"
+            [ngClass]="{'uk-form-danger': (!form.controls.price.valid && !form.controls.price.pristine)}">
+          <span class="uk-text-danger" *ngIf="form.controls.price.invalid && !form.controls.price.pristine">
+            Invalid Price
+          </span>
+        </div>
+        <div class="uk-margin">
+          <input type="text" class="uk-input uk-form-large uk-form-danger" placeholder="Description"
+            formControlName="description"
+            [ngClass]="{'uk-form-danger': (!form.controls.description.valid && !form.controls.description.pristine)}">
+          <span class="uk-text-danger" *ngIf="form.controls.description.invalid && !form.controls.description.pristine">
+            Invalid Description
+          </span>
+        </div>
+        <div class="uk-margin">
+          <input type="number" class="uk-input uk-form-large uk-form-danger" placeholder="Quantity"
+            formControlName="quantity"
+            [ngClass]="{'uk-form-danger': (!form.controls.quantity.valid && !form.controls.quantity.pristine)}">
+          <span class="uk-text-danger" *ngIf="form.controls.quantity.invalid && !form.controls.quantity.pristine">
+            Invalid Quantity
+          </span>
+        </div>
+        <div class="uk-margin">
+          <select class="uk-input uk-form-large" formControlName="category">
+            <option value="{{ item.category }}" *ngFor="let item of categories">
+              {{ item.category }}
+            </option>
+          </select>
+        </div>
+        <div class="uk-margin uk-text-right">
+          <button class="uk-button uk-button-secondary" (click)="back()">Voltar</button>
+          <button class="uk-button uk-button-primary" [disabled]="form.invalid" (click)="submit()">Add</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

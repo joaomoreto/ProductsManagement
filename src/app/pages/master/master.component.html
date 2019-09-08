@@ -1,0 +1,39 @@
+<nav class="uk-navbar-container" uk-navbar>
+  <div class="uk-navbar-left">
+    <ul class="uk-navbar-nav">
+      <li class="uk-active">
+        <a href="" uk-icon="menu" uk-toggle="target: #my-id"></a>
+      </li>
+    </ul>
+  </div>
+  <div class="uk-navbar-center">
+    <ul class="uk-navbar-nav">
+      <li>
+        Products Management
+      </li>
+    </ul>
+  </div>
+  <div class="uk-navbar-right">
+    <ul class="uk-navbar-nav">
+      <li>
+        <a href="" (click)="logout()" class="uk-navbar-right" uk-icon="sign-out">LOGOUT</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<!-- This is the off-canvas -->
+<div id="my-id" uk-offcanvas>
+  <div class="uk-offcanvas-bar">
+
+    <button class="uk-offcanvas-close" type="button" uk-close></button>
+    <a [routerLink]="['']" class="uk-navbar-right" uk-icon="home">HOME</a>
+    <hr>
+    <a (click)="newProduct()" class="uk-navbar-right" uk-icon="plus-circle">NEW PRODUCT</a>
+    <hr>
+    <a href="" (click)="logout()" class="uk-navbar-right" uk-icon="sign-out">LOGOUT</a>
+  </div>
+</div>
+<div class="uk-padding">
+  <router-outlet></router-outlet>
+</div>
