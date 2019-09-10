@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Result } from 'src/app/models/result.model';
 import { DataService } from 'src/app/data.service';
 import { Product } from 'src/app/models/product.model';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-editor-product',
@@ -14,11 +14,13 @@ export class EditorProductComponent implements OnInit {
   @Input() product: Product = new Product("", "", 1, "", 1, "");
   public form: FormGroup;
   public categories: any[] = [];
+  public id: string;
 
   constructor(
     private fb: FormBuilder,
     public service: DataService,
-    private route: Router
+    private route: Router,
+    private routeTeste: ActivatedRoute
   ) {
     this.form = this.fb.group({
       code: [this.product.code, Validators.compose([
@@ -49,14 +51,41 @@ export class EditorProductComponent implements OnInit {
     this.form.controls['category'].setValue(this.product.category);
   }
 
-  submit() {
+  add() {
+    this.form.disable();
+
+    this.service
+      .save(this.form.value)
+      .subscribe(
+        (res: Result) => {
+          console.log(res.message);
+          alert(res.message);
+
+          this.route.navigate(['']);
+
+        },
+        (err) => {
+          console.log(err.message);
+          this.form.enable();
+        },
+        () => {
+          this.form.enable();
+        }
+      )
+  };
+
+  update() {
     this.form.disable();
 
     this.service
       .update(this.form.value)
       .subscribe(
         (res: Result) => {
-          console.log(res.message)
+          console.log(res.message);
+          alert(res.message);
+
+          this.route.navigate(['']);
+
         },
         (err) => {
           console.log(err.message);

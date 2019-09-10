@@ -29,4 +29,8 @@ export class DataService {
   delete(product: Product) {
     return this.http.delete(`http://localhost:3000/products/${product.code}`);
   }
+
+  getByCode(code: string) {
+    return this.http.get(`http://localhost:3000/products/${code}`);
+  }
 }

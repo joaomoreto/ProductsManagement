@@ -4,6 +4,7 @@ import { DataService } from 'src/app/data.service';
 import { Router } from '@angular/router';
 import { Result } from 'src/app/models/result.model';
 import { FormGroup } from '@angular/forms';
+import { preserveWhitespacesDefault } from '@angular/compiler';
 
 @Component({
   selector: 'app-product-list',
@@ -30,11 +31,13 @@ export class ProductListComponent implements OnInit {
   }
 
   select(product: Product) {
-    this.route.navigate(['edit-product']);
-
     console.log(product);
 
     this.product = product;
+
+    sessionStorage.setItem('product', JSON.stringify(this.product));
+
+    this.route.navigate(['edit-product', product.code]);
   }
 
   delete(product: Product) {
@@ -54,7 +57,10 @@ export class ProductListComponent implements OnInit {
   };
 
   newProduct() {
-    this.route.navigate(['create-product']);
     this.product = new Product("", "", 1, "", 1, "");
+
+    this.product = this.product;
+
+    this.route.navigate(['create-product']);
   }
 }

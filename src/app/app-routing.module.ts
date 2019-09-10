@@ -6,6 +6,8 @@ import { AuthenticatedGuard } from './guards/authenticated.guard';
 import { ManagerGuard } from './guards/manager.guard';
 import { MasterComponent } from './pages/master/master.component';
 import { ProductListComponent } from './pages/product-list/product-list.component';
+import { EditProductComponent } from './pages/edit-product/edit-product.component';
+import { CreateProductComponent } from './pages/create-product/create-product.component';
 
 
 const routes: Routes = [
@@ -21,19 +23,19 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'create-product',
+    path: '',
     canActivate: [AuthenticatedGuard],
     component: MasterComponent,
     children: [
-      { path: '', component: EditorProductComponent },
+      { path: 'create-product', component: CreateProductComponent },
     ]
   },
   {
-    path: 'edit-product',
+    path: '',
     canActivate: [AuthenticatedGuard, ManagerGuard],
     component: MasterComponent,
     children: [
-      { path: '', component: EditorProductComponent },
+      { path: 'edit-product/:code', component: EditProductComponent },
     ]
   },
 ];

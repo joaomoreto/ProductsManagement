@@ -19,8 +19,8 @@ export class MasterComponent implements OnInit {
   }
 
   newProduct() {
-    this.route.navigate(['create-product']);
     this.product = new Product("", "", 1, "", 1, "");
+    this.route.navigate(['create-product']);
   }
 
   logout() {
